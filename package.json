@@ -23,12 +23,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "jest"
     }
-  },
-  "lint-staged": {
-    "*.js": [
-      "jest --passWithNoTests"
-    ]
   }
 }
