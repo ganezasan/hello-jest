@@ -17,6 +17,18 @@
     "@babel/preset-env": "^7.11.5",
     "babel-jest": "^26.3.0",
     "babel-plugin-rewire": "^1.2.0",
-    "jest": "^26.4.2"
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.4.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "jest --passWithNoTests"
+    ]
   }
 }
