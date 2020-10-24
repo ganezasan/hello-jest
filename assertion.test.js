@@ -49,9 +49,35 @@ test('toEqual can\'t compare class name', () => {
 
 // Errorの評価
 
+test('throw Error when passing no variable', () => {
+  class Foo {
+    constructor ({ message }) {
+      this.message = message;
+    }
+  }
+
+  expect(() => new Foo()).toThrow();
+  expect(() => new Foo()).toThrow(TypeError); //型のチェック
+  expect(() => new Foo()).toThrow("Cannot destructure property `message` of 'undefined' or 'null'."); //エラーメッセージのチェック
+});
+
 
 // 非同期の関数の結果の評価
+// callback
+const fetchDataWithCallback = callback => {
+  setTimeout(callback, 3000, 'lemon');
+};
 
+test('return lemon', done => {
+  const callback = data => {
+    expect(data).toBe('lemon');
+    done();
+  };
+
+  fetchDataWithCallback(callback);
+});
+
+// promise
 const fetchData = (category='fruit') => category === 'fruit'
   ? Promise.resolve('lemon') 
   : Promise.reject(new Error('not exist'));
