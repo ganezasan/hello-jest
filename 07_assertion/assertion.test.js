@@ -58,7 +58,7 @@ test('throw Error when passing no variable', () => {
 
   expect(() => new Foo()).toThrow();
   expect(() => new Foo()).toThrow(TypeError); //型のチェック
-  expect(() => new Foo()).toThrow("Cannot destructure property `message` of 'undefined' or 'null'."); //エラーメッセージのチェック
+  expect(() => new Foo()).toThrow("Cannot destructure property 'message' of 'undefined' as it is undefined."); //エラーメッセージのチェック
 });
 
 
