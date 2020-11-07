@@ -21,12 +21,16 @@
     "geckodriver": "^1.20.0",
     "husky": "^4.3.0",
     "jest": "^26.4.2",
-    "lint-staged": "^10.4.2",
+    "jest-puppeteer": "^4.4.0",
+    "puppeteer": "^5.4.1",
     "selenium-webdriver": "^4.0.0-alpha.7"
   },
   "husky": {
     "hooks": {
       "pre-commit": "jest"
     }
+  },
+  "jest": {
+    "preset": "jest-puppeteer"
   }
 }
