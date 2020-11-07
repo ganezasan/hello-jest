@@ -1,6 +1,6 @@
 import { Builder, By, Key, until, Capabilities } from 'selenium-webdriver';
 
-describe('e2e test', () => {
+describe('e2e test with selenium', () => {
   let chromeDriver = {};
   let geckoDriver = {};
 
@@ -38,7 +38,7 @@ describe('e2e test', () => {
     // 検索ボックスの要素を探し、webdriver`、エンターキーを入力
     await chromeDriver.findElement(By.name('q')).sendKeys('webdriver', Key.RETURN);
     // ページのタイトルが`webdriver - Google Search`に切り替わるまで待つ
-    const results = await chromeDriver.wait(until.titleIs('webdriver - Google Search'), 1000);
+    const results = await chromeDriver.wait(until.titleIs('webdriver - Google Search'), 2000);
     expect(results).toBe(true);
   });
 
@@ -48,7 +48,7 @@ describe('e2e test', () => {
     // 検索ボックスの要素を探し、webdriver`、エンターキーを入力
     await geckoDriver.findElement(By.name('q')).sendKeys('webdriver', Key.RETURN);
     // ページのタイトルが`webdriver - Google Search`に切り替わるまで待つ
-    const results = await geckoDriver.wait(until.titleIs('webdriver - Google Search'), 1000);
+    const results = await geckoDriver.wait(until.titleIs('webdriver - Google Search'), 2000);
     expect(results).toBe(true);
   });
 });
