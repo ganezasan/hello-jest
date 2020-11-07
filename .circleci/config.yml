@@ -5,3 +5,9 @@ jobs:
       - image: cimg/node:12.18.4-browsers
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run test
+          command: npm run test
