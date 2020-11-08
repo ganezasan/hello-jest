@@ -23,7 +23,7 @@ jobs:
           key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run:
           name: Run test
-          command: npm run test -- --coverage
+          command: npm run test -- --coverage --maxWorkers=2
       - codecov/upload:
           file: reports/coverage/clover.xml
       - store_test_results:
