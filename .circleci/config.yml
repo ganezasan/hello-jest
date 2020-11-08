@@ -25,6 +25,6 @@ jobs:
           name: Run test
           command: npm run test -- --coverage
       - codecov/upload:
-          file: reports/coverage/coverage-final.json
+          file: reports/coverage/clover.xml
       - store_test_results:
           path: reports
