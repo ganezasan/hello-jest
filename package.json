@@ -21,6 +21,7 @@
     "geckodriver": "^1.20.0",
     "husky": "^4.3.0",
     "jest": "^26.4.2",
+    "jest-junit": "^12.0.0",
     "jest-puppeteer": "^4.4.0",
     "puppeteer": "^5.4.1",
     "selenium-webdriver": "^4.0.0-alpha.7"
@@ -32,6 +33,10 @@
   },
   "jest": {
     "preset": "jest-puppeteer",
-    "coverageDirectory": "./reports/coverage"
+    "coverageDirectory": "./reports/coverage",
+    "reporters": [ "default", "jest-junit" ]
+  },
+  "jest-junit": {
+    "outputDirectory": "reports/jest"
   }
 }

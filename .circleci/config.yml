@@ -26,3 +26,5 @@ jobs:
           command: npm run test -- --coverage
       - codecov/upload:
           file: reports/coverage/coverage-final.json
+      - store_test_results:
+          path: reports
