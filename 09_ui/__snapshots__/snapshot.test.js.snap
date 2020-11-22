@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test renders correctly with @testing-library/react 1`] = `
+<div>
+  <button
+    style="background-color: green; color: white;"
+  >
+    ON
+  </button>
+</div>
+`;
+
+exports[`snapshot test renders correctly with @testing-library/react 2`] = `
+<div>
+  <button
+    style="background-color: green; color: white;"
+  >
+    OFF
+  </button>
+</div>
+`;
+
+exports[`snapshot test renders correctly with @testing-library/react 3`] = `
+<div>
+  <button
+    style="background-color: green; color: white;"
+  >
+    ON
+  </button>
+</div>
+`;
+
+exports[`snapshot test renders correctly with react-test-renderer 1`] = `
+<button
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "green",
+      "color": "white",
+    }
+  }
+>
+  ON
+</button>
+`;
