@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jest-environment-puppeteer
+ */
 
 describe('Open Google with jest-puppeteer', () => {
   it('should be titled "Google"', async () => {
