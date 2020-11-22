@@ -6,7 +6,8 @@
           "node": "current"
         }
       }
-    ]
+    ],
+    "@babel/preset-react"
   ],
   "env": {
     "test": {
