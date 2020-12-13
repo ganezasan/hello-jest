@@ -13,7 +13,7 @@ describe('#isSour', () => {
 
 const getBeverage = age => {
   const beverages = [
-    {name: 'coke', alcohol: false}, 
+    {name: 'cola', alcohol: false}, 
     {name: 'lemonade', alcohol: false},
     {name: 'beer', alcohol: true},
   ];
@@ -42,7 +42,7 @@ describe('#getBeverageFlavor', () => {
   });
 
   it('return cola when age is 20', () => {
-    expect(getBeverage(adult).name).toBe('coke');
+    expect(getBeverage(adult).name).toBe('cola');
   });
 });
 
