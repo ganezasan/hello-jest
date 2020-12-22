@@ -14,29 +14,29 @@ describe('simple ui test', () => {
 
 
   it('message doesn\'t show at the initial', () => {
-    const message = document.body.querySelector('#message > p');
+    const message = document.querySelector('#message > p');
     expect(message).toBe(null);
   });
 
   it('show message after clicking the button', () => {
-    const button = document.body.querySelector('#showMessage');
+    const button = document.querySelector('#showMessage');
     const click = document.createEvent('Event'); 
     click.initEvent('click');
     button.dispatchEvent(click);
 
-    const message = document.body.querySelector('#message > p');
-    expect(message.innerHTML).toBe('You Passed!!!');
+    const message = document.querySelector('#message > p');
+    expect(message.textContent).toBe('You Passed!!!');
   });
 
   it('show only one message after clicking the button twice', () => {
-    const button = document.body.querySelector('#showMessage');
+    const button = document.querySelector('#showMessage');
     const click = document.createEvent('Event'); 
     click.initEvent('click');
     button.dispatchEvent(click);
     button.dispatchEvent(click);
 
-    const messages = document.body.querySelectorAll('#message p');
+    const messages = document.querySelectorAll('#message p');
     expect(messages.length).toBe(1);
-    expect(messages[0].innerHTML).toBe('You Passed!!!');
+    expect(messages[0].textContent).toBe('You Passed!!!');
   });
 });
