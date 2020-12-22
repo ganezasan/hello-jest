@@ -42,3 +42,132 @@ describe('#spyOn', () => {
     // expect(Math.random() < 1).toEqual(true); // toEqualで1未満であることを評価する
   });
 });
+
+describe('#reset mocks with spyOn', () => {
+  const mockDate = new Date('2019-12-21'); // 1年前の今日
+  const originalDate = new Date('2020-12-25');
+  let spy = null;
+  beforeEach(() => {
+    spy = jest.spyOn(global, "Date").mockImplementation(() => mockDate);
+  });
+
+  afterEach(() => {
+    spy.mockRestore();
+  });
+
+  it('jest.clearAllMocks', () => {
+    // Dateに引数で他の日時を与えても、mockDateが返される
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+    expect(spy.mock.calls).toEqual([['2020-12-25']]);
+    expect(spy.mock.instances).toEqual([{}]); // mock関数の返り値がオブジェクトである場合、mockInstanceは作成されない。こちらの挙動について、なぜそうなるのかJestのissueで確認しています https://github.com/facebook/jest/issues/10965
+    expect(spy.mock.results).toEqual([ { type: 'return', value: mockDate } ]);
+
+    // リセット
+    jest.clearAllMocks();
+
+    // mockのプロパティがすべてリセットされる
+    expect(spy.mock.calls).toEqual([]);
+    expect(spy.mock.instances).toEqual([]);
+    expect(spy.mock.results).toEqual([]);
+
+    // mock関数は引き続き利用できる
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+  });
+
+  it('jest.resetAllMocks', () => {
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+    expect(spy.mock.calls).toEqual([['2020-12-25']]);
+    expect(spy.mock.instances).toEqual([{}]);
+    expect(spy.mock.results).toEqual([ { type: 'return', value: mockDate } ]);
+
+    jest.resetAllMocks();
+
+    // mockのプロパティがすべてリセットされる
+    expect(spy.mock.calls).toEqual([]);
+    expect(spy.mock.instances).toEqual([]);
+    expect(spy.mock.results).toEqual([]);
+
+    // mock関数はリセットされ、デフォルトでは`{}`が返される
+    expect(new Date('2020-12-25')).toEqual({});
+  });
+
+  it('jest.restoreAllMocks', () => {
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+    expect(spy.mock.calls).toEqual([['2020-12-25']]);
+    expect(spy.mock.instances).toEqual([{}]);
+    expect(spy.mock.results).toEqual([ { type: 'return', value: mockDate } ]);
+
+    jest.restoreAllMocks();
+
+    // mockのプロパティはリセットされない
+    expect(spy.mock.calls).toEqual([['2020-12-25']]);
+    expect(spy.mock.instances).toEqual([{}]);
+    expect(spy.mock.results).toEqual([ { type: 'return', value: mockDate } ]);
+
+    // mock関数がリセットされ、オリジナルのDate関数が実行される
+    expect(new Date('2020-12-25')).toEqual(originalDate);
+  });
+});
+
+describe('#reset mocks with jest.fn', () => {
+  const mockDate = new Date('2019-12-21'); // 1年前の今日
+  const originalDate = new Date('2020-12-25');
+
+  beforeEach(() => {
+    Date = jest.fn(() => mockDate);
+  });
+
+  it('jest.clearAllMocks', () => {
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+    expect(Date.mock.calls).toEqual([['2020-12-25']]);
+    expect(Date.mock.instances).toEqual([{}]);
+    expect(Date.mock.results).toEqual([ { type: 'return', value: mockDate } ]);
+
+    // リセット
+    jest.clearAllMocks();
+
+    // mockのプロパティがすべてリセットされる
+    expect(Date.mock.calls).toEqual([]);
+    expect(Date.mock.instances).toEqual([]);
+    expect(Date.mock.results).toEqual([]);
+
+    // mock関数は引き続き利用できる
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+  });
+
+  it('jest.resetAllMocks', () => {
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+    expect(Date.mock.calls).toEqual([['2020-12-25']]);
+    expect(Date.mock.instances).toEqual([{}]);
+    expect(Date.mock.results).toEqual([ { type: 'return', value: mockDate } ]);
+
+    jest.resetAllMocks();
+
+    // mockのプロパティがすべてリセットされる
+    expect(Date.mock.calls).toEqual([]);
+    expect(Date.mock.instances).toEqual([]);
+    expect(Date.mock.results).toEqual([]);
+
+    // mock関数はリセットされ、デフォルトでは`{}`が返される
+    expect(new Date('2020-12-25')).toEqual({});
+  });
+
+  it('jest.restoreAllMocks', () => {
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+    expect(Date.mock.calls).toEqual([['2020-12-25']]);
+    expect(Date.mock.instances).toEqual([{}]);
+    expect(Date.mock.results).toEqual([ { type: 'return', value: mockDate } ]);
+
+    jest.restoreAllMocks();
+
+    // mockのプロパティはリセットされない
+    expect(Date.mock.calls).toEqual([['2020-12-25']]);
+    expect(Date.mock.instances).toEqual([{}]);
+    expect(Date.mock.results).toEqual([ { type: 'return', value: mockDate } ]);
+
+    // spyOnの場合と異なり、jest.fnで関数にモック関数を上書きした場合は、restoreAllMocksを利用してもオリジナルの関数へは元に戻らない
+    expect(new Date('2020-12-25')).not.toEqual(originalDate);
+    expect(new Date('2020-12-25')).toEqual(mockDate);
+  });
+});
+  
