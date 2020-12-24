@@ -1,15 +1,14 @@
-const isSour = item => item === 'lemonade' ? true : false;
+const isSour = beverage => beverage === 'lemonade' ? true : false;
 
 describe('#isSour', () => {
-  test('cola is not sour', () => {
-    expect(isSour('cola')).toBe(false);
-  });
-
-  it('lemonade is sour', () => {
+  test('lemonade is sour', () => {
     expect(isSour('lemonade')).toBe(true);
   });
-});
 
+  it('cola is not sour', () => {
+    expect(isSour('cola')).toBe(false);
+  });
+});
 
 const getBeverage = age => {
   const beverages = [
@@ -26,7 +25,7 @@ const getBeverage = age => {
   return filteredBeverages[seed];
 };
 
-describe('#getBeverageFlavor', () => {
+describe('#getBeverage', () => {
   const spy = jest.spyOn(Math, 'random')
     .mockImplementationOnce(() => 0.7) // 乱数を3へ
     .mockImplementationOnce(() => 0); // 乱数を1へ
