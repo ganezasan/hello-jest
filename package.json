@@ -1,13 +1,12 @@
 {
   "name": "hello-jest",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "はじめてのJest入門のサンプルプロジェクトです。",
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["jest","unit-test","e2e","ui-test","tdd"],
+  "author": "ganezasan",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.20.0",
