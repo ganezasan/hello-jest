@@ -1,6 +1,6 @@
 import { Builder, By, Key, until, Capabilities } from 'selenium-webdriver';
 
-jest.setTimeout(10000);
+jest.setTimeout(10000); // タイムアウトを10秒に延長
 
 describe('e2e test with selenium', () => {
   let chromeDriver = {};
