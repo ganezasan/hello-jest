@@ -12,15 +12,15 @@
 - 09_ui                 : Chapter9 - はじめてのUIテスト
 - 10_e2e                : Chapter10 - E2E（エンドツーエンド）テスト
 
-# 書籍の購入ページ
+## 書籍の購入ページ
 > https://techbookfest.org/product/6646880551305216
 
-# パッケージのインストール
+## パッケージのインストール
 ```
 $ npm install
 ```
 
-# テストの実行
+## テストの実行
 ```
 $ npm run test
 ```
